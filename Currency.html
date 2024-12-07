@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+    <title>Creative Gallery Showcase</title>
+    <style>
+        /* Body Background */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #121212;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Sticky Header */
+        header {
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background-color: #2196F3;
+            color: white;
+            z-index: 1;
+        }
+
+        header .left {
+            display: flex;
+            align-items: center;
+        }
+
+        header .left img {
+            height: 50px;
+        }
+
+        header .right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        header .right .btn {
+            margin-left: 10px;
+            padding: 10px 20px;
+            background-color: #3ba599;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        header .right .btn:hover {
+            background-color: #2a8f80;
+        }
+
+        /* Typing Effect for Header */
+        .typing {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            border-right: 4px solid #2196F3;
+            width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 3s steps(30) forwards;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Description after Typing Effect */
+        .description {
+            font-size: 1.2rem;
+            color: #ccc;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .description.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        footer p {
+            font-size: 1.2rem;
+        }
+
+        /* Card container */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            padding: 50px;
+        }
+
+        /* Card */
+        .card {
+            position: relative;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.15);
+        }
+
+        .card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.6s ease;
+        }
+
+        .card:hover .card-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        /* Pop-Up Effect */
+        .pop-up {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .pop-up.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Add more space between sections */
+        .section {
+            padding: 50px 0;
+        }
+
+        /* Animation for card content descriptions */
+        .desc-anim {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .desc-anim.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* About the Author Button (Fixed on the side) */
+        a.btn-floating {
+            position: fixed;
+            right: 20px;   /* Adjust right position */
+            bottom: 20px;  /* Adjust bottom position */
+            z-index: 1000; /* Ensure it stays above other content */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="row">
+            <div class="col s6">
+                <a href="home.html"> <!-- Link to another HTML page -->
+                    <img src="/images/Main_BidBattles_Logo.png" alt="Logo" height="50">
+                </a>
+            </div>
+            <div class="col s6 right-align">
+                <a href="auctions.html" class="btn tooltipped" data-position="bottom" data-tooltip="View Auctions">Auctions</a>
+                <a href="#!" class="btn tooltipped" data-position="bottom" data-tooltip="Place a Bid">Place</a>
+                <a href="#!" class="btn tooltipped" data-position="bottom" data-tooltip="Check Currency">Currency</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Typing Header Effect -->
+    <div style="text-align:center; padding: 50px;">
+        <h2 class="typing">Currencies</h2>
+        <!-- Description below Typing -->
+        <p class="description" id="description">These are the permanent in-game currencies that stays in-game!</p>
+    </div>
+
+    <!-- Gallery Section 1 -->
+    <div class="section">
+        <h2>Cash</h2>
+        <div class="card-container">
+            <!-- Card 1 -->
+            <div class="card pop-up">
+                <img src="/images/cash_logo.png" alt="Image 1">
+                <div class="card-content">
+                    <h5 class="card-title">Cash is one of a big factor that determines net worth. It is used to entry and play different cash auctions!</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section 2 -->
+    <div class="section">
+        <h2>Gems</h2>
+        <div class="card-container">
+            <!-- Card 2 -->
+            <div class="card pop-up">
+                <img src="/images/gems_logo.png" alt="Image 2">
+                <div class="card-content">
+                    <h5 class="card-title">Gems are valuable resource in-game. It is used to upgrade stats such as storage and carry space. It is also used to entry and play different gems auctions!</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>© 2024 Bid Battles | All Rights Reserved</p>
+    </footer>
+
+    <!-- About the Author Button (Fixed on the side) -->
+    <a href="Author.html" class="btn-floating btn-large waves-effect waves-light teal tooltipped" data-position="left" data-tooltip="About the Author">
+        <i class="material-icons">person</i>
+    </a>
+
+    <!-- Materialize JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize tooltips
+            const tooltips = document.querySelectorAll('.tooltipped');
+            M.Tooltip.init(tooltips);
+    
+            // Initialize Materialize Parallax
+            $('.parallax').parallax();
+        });
+    
+        // Pop-Up Effect on Scroll
+        const observerOptions = {
+            threshold: 0.5 // Trigger animation when 50% of the element is in view
+        };
+    
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, observerOptions);
+    
+        // Target the cards to apply pop-up effect
+        const cards = document.querySelectorAll('.pop-up');
+        cards.forEach(card => {
+            observer.observe(card);
+        });
+    
+        // Typing Effect and Description Toggle
+        setTimeout(() => {
+            document.querySelector('.description').classList.add('show');
+        }, 3500);
+    </script>
+    
+
+</body>
+</html>
